@@ -1,0 +1,5 @@
+Dairy cooler 10 x 8 x 8 ft at 35 F, 4 in foamed-in-place polyurethane, 500 lb/day of milk entering at 70 F:
+
+$ python3 walkin_load.py --length 10 --width 8 --height 8 --box-temp 35 --ambient 90 --product Milk --lb-per-day 500 --entering-temp 70
+
+(Component values are printed by the tool; the milk load alone is 500 x 0.93 x (70-35) = 16,275 BTU/24h before the safety factor - the milk cools to the 35 F box temperature and never reaches its 31 F freezing point, so no latent heat is involved.)

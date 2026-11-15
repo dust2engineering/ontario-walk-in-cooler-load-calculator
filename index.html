@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Walk-In Cooler / Freezer Load Calculator | Dust 2 Engineering Inc.</title>
+<style>
+:root{color-scheme:dark}
+body{background:#0e1116;color:#e6e9ee;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;padding:24px;line-height:1.55}
+.wrap{max-width:860px;margin:0 auto}
+h1{font-size:1.55rem;line-height:1.25;margin:.2em 0 .1em}
+h2{font-size:1.15rem;margin-top:1.6em;color:#ffd479}
+.sub{color:#9fb0c3;margin:.2em 0 1.2em}
+.card{background:#161b22;border:1px solid #2b333f;border-radius:12px;padding:18px;margin:14px 0}
+label{display:block;margin:.7em 0 .25em;color:#c8d3e0;font-size:.95rem}
+input,select,textarea{width:100%;box-sizing:border-box;background:#0e1116;color:#e6e9ee;border:1px solid #39424f;border-radius:8px;padding:9px;font-size:1rem}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:640px){.row{grid-template-columns:1fr}}
+button{background:#f0a832;color:#14100a;border:0;border-radius:8px;padding:11px 18px;font-size:1rem;font-weight:600;cursor:pointer;margin-top:14px}
+pre{background:#0a0d11;border:1px solid #2b333f;border-radius:10px;padding:14px;white-space:pre-wrap;word-break:break-word;font-size:.92rem}
+table{border-collapse:collapse;width:100%;font-size:.9rem}
+th,td{border:1px solid #2b333f;padding:6px 8px;text-align:left}
+th{background:#1b212b}
+.small{color:#9fb0c3;font-size:.88rem}
+a{color:#7cc4ff}
+.pass{color:#7ee2a0}.fail{color:#ff9c9c}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Walk-In Cooler / Freezer Load Calculator</h1>
+<p class="sub">Heatcraft-method quick load estimate: transmission, infiltration, product and internal loads, +10% safety.</p>
+<div class="card">
+<div class="row"><div><label>Length (ft)</label><input id="L" type="number" value="10"></div>
+<div><label>Width (ft)</label><input id="W" type="number" value="8"></div></div>
+<div class="row"><div><label>Height (ft)</label><input id="H" type="number" value="8"></div>
+<div><label>Box temperature (°F)</label><input id="box" type="number" value="35"></div></div>
+<div class="row"><div><label>Ambient temperature (°F)</label><input id="amb" type="number" value="90"></div>
+<div><label>Ambient relative humidity (0–1)</label><input id="rh" type="number" value="0.5" step="0.05"></div></div>
+<div class="row"><div><label>Insulation material</label><select id="mat"><option selected>Foamed-in-place polyurethane</option><option>Sprayed polyurethane</option><option>Polystyrene (Styrofoam)</option><option>Cork</option><option>Mineral wool</option></select></div>
+<div><label>Insulation thickness (in)</label><input id="th" type="number" value="4" step="0.5"></div></div>
+<label>Usage</label><select id="use"><option value="normal" selected>Normal</option><option value="heavy">Heavy use (air changes × 2)</option><option value="long-term storage">Long-term storage (× 0.6)</option></select>
+<div class="row"><div><label>Product</label><select id="prod"><option>Apples</option><option>Beef (fresh)</option><option>Pork (fresh)</option><option>Lamb (fresh)</option><option>Chicken (fresh)</option><option>Fish (fresh)</option><option selected>Milk</option><option>Eggs (in shell)</option><option>Ice cream</option><option>Mixed vegetables</option><option>Generic (Heatcraft quick default)</option></select></div>
+<div><label>Product load (lb/day)</label><input id="lb" type="number" value="500"></div></div>
+<div class="row"><div><label>Product entering temperature (°F)</label><input id="tin" type="number" value="70"></div>
+<div><label>Pull-down time (h)</label><input id="pd" type="number" value="24"></div></div>
+<div class="row"><div><label>Fan/motor load inside box (HP)</label><input id="hp" type="number" value="0.5" step="0.25"></div>
+<div><label>Lights (W) / hours per day</label><input id="lw" type="number" value="80"></div></div>
+<div class="row"><div><label>Light hours per day</label><input id="lh" type="number" value="12"></div>
+<div><label>People in box / hours per day</label><input id="ppl" type="number" value="1"></div></div>
+<div class="row"><div><label>People hours per day</label><input id="ph" type="number" value="2"></div>
+<div><label>Glass doors (count)</label><input id="gd" type="number" value="0"></div></div>
+<label>Compressor run time (h/day) — blank = 18 freezer / 16 cooler</label><input id="run" type="number" placeholder="auto">
+<button onclick="calc()">Calculate load</button>
+<pre id="out">Fill in the box and click Calculate.</pre></div>
+<div class="card"><h2>Method and honesty notes</h2>
+<p class="small">Heatcraft engineering-manual method: transmission (U = k/thickness, floor against 55 °F ground), infiltration (air-change tables by box volume; heavy use ×2, long-term storage ×0.6), product load (freezing point, specific heats and latent heat from the manual's Table 7 — ranges are used at their midpoints), motors at 75,000 BTU/HP/24h, lights, people by box temperature, glass doors at 31,200 BTU/door/24h, then a 10% safety factor. The heat removed per cubic foot of infiltrating air is computed psychrometrically (the manual's Table 6 method); it reproduces the manual's worked anchor of ≈ 3.49 BTU/ft³ for an 85 °F ambient / −20 °F box. Respiration heat for fresh produce is not included — no verified table was available, and this tool does not invent one.</p></div>
+<p class="small">Free tool by <b>Dust 2 Engineering Inc.</b>, Mississauga, Ontario — building permit
+drawings for restaurants and small commercial projects across the GTA, stamped by an Ontario P.Eng.
+Flat rate $3,500–$5,000. Questions or a project to discuss: open an issue in this repository.</p>
+</div>
+<script>
+const K={"Foamed-in-place polyurethane": 0.16, "Sprayed polyurethane": 0.12, "Polystyrene (Styrofoam)": 0.24, "Cork": 0.38, "Mineral wool": 0.3}, AC=[[200, 44.0, 33.5], [250, 38.0, 29.0], [300, 34.5, 26.2], [400, 29.5, 22.5], [500, 26.0, 20.0], [600, 23.0, 18.0], [800, 20.0, 15.3], [1000, 17.5, 13.5], [1500, 14.0, 11.0], [2000, 12.0, 9.3], [3000, 9.5, 7.4], [4000, 8.2, 6.3], [5000, 7.2, 5.6], [6000, 6.5, 5.0], [8000, 5.5, 4.3], [10000, 4.9, 3.8], [15000, 3.9, 3.0], [20000, 3.5, 2.6], [25000, 3.0, 2.3], [30000, 2.7, 2.1], [40000, 2.3, 1.8], [50000, 2.0, 1.6], [75000, 1.6, 1.3], [100000, 1.4, 1.1], [150000, 1.2, 1.0], [200000, 1.1, 0.9], [300000, 1.0, 0.85]], PROD={"Apples": [29.3, 0.87, 0.45, 121], "Beef (fresh)": [28.5, 0.77, 0.41, 100], "Pork (fresh)": [28.5, 0.51, 0.32, 55], "Lamb (fresh)": [28.5, 0.72, 0.45, 93], "Chicken (fresh)": [27.0, 0.79, 0.42, 106], "Fish (fresh)": [28.0, 0.78, 0.42, 101], "Milk": [31.0, 0.93, 0.49, 124], "Eggs (in shell)": [28.0, 0.73, 0.4, 96], "Ice cream": [21.0, 0.68, 0.38, 86], "Mixed vegetables": [30.0, 0.9, 0.45, 130], "Generic (Heatcraft quick default)": [27.0, 0.8, 0.45, 100]}, PPL=[[-10, 33600], [0, 31200], [10, 28800], [20, 25200], [30, 22800], [40, 20160], [50, 17280]];
+function interp(x,pts){ if(x<=pts[0][0])return pts[0][1]; if(x>=pts[pts.length-1][0])return pts[pts.length-1][1]; for(let i=0;i<pts.length-1;i++){ if(pts[i][0]<=x&&x<=pts[i+1][0]){ const f=(x-pts[i][0])/(pts[i+1][0]-pts[i][0]); return pts[i][1]+f*(pts[i+1][1]-pts[i][1]); } } }
+function satW(tf){ const tc=(tf-32)*5/9; const p= tc>=0? 0.61094*Math.exp(17.625*tc/(tc+243.04)) : 0.61115*Math.exp(22.452*tc/(tc+272.55)); return 0.621945*p/(101.325-p); }
+function enth(tf,w){ return 0.240*tf + w*(1061+0.444*tf); }
+function heatFt3(amb,rh,box){ const dh=enth(amb, rh*satW(amb))-enth(box, satW(box)); return dh*(144*14.696/(53.35*(box+459.67))); }
+function calc(){
+ const v=id=>parseFloat(document.getElementById(id).value)||0;
+ const L=v('L'),W=v('W'),H=v('H'),box=v('box'),amb=v('amb'),rh=v('rh'),th=v('th');
+ const mat=document.getElementById('mat').value, use=document.getElementById('use').value, prod=document.getElementById('prod').value;
+ const U=K[mat]/th;
+ const wall=2*(L*H+W*H), ca=L*W;
+ const qTr=U*(wall*(amb-box)+ca*(amb-box)+ca*(55-box))*24;
+ const vol=L*W*H;
+ const ac=interp(vol, AC.map(r=>[r[0], box>32? r[1]: r[2]]));
+ const uf= use==='heavy'?2.0 : (use==='long-term storage'?0.6:1.0);
+ const qInf=vol*ac*uf*heatFt3(amb,rh,box);
+ const P=PROD[prod], fp=P[0],cpa=P[1],cpb=P[2],lat=P[3], lb=v('lb'), tin=v('tin'), pd=v('pd')||24;
+ let q=0; if(lb>0 && tin>box){ if(box>=fp) q=lb*cpa*(tin-box); else if(tin>=fp) q=lb*cpa*(tin-fp)+lb*lat+lb*cpb*(fp-box); else q=lb*cpb*(tin-box); q*=(24/pd); }
+ const qPr=q, qMo=v('hp')*75000, qLi=v('lw')*3.41*v('lh'), qPe=v('ppl')*interp(box,PPL)*(v('ph')/24), qDo=v('gd')*31200;
+ const sub=qTr+qInf+qPr+qMo+qLi+qPe+qDo, tot=sub*1.10;
+ const runIn=document.getElementById('run').value; const run= runIn? parseFloat(runIn) : (box<32?18:16);
+ const f=n=>Math.round(n).toLocaleString('en-US');
+ document.getElementById('out').textContent=
+ 'Transmission   '+f(qTr)+' BTU/24h  (U = '+U.toFixed(4)+')\nInfiltration   '+f(qInf)+' BTU/24h  ('+ac.toFixed(2)+' air changes/24h)\nProduct        '+f(qPr)+' BTU/24h\nMotors         '+f(qMo)+' BTU/24h\nLights         '+f(qLi)+' BTU/24h\nPeople         '+f(qPe)+' BTU/24h\nGlass doors    '+f(qDo)+' BTU/24h\nSubtotal       '+f(sub)+' BTU/24h\nTotal (+10% safety)  '+f(tot)+' BTU/24h\nRequired capacity at '+run+' h run time: '+f(tot/run)+' BTUH';
+}
+</script>
+</body>
+</html>

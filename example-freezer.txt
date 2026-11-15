@@ -1,0 +1,5 @@
+Freezer at -10 F with chicken to freeze:
+
+$ python3 walkin_load.py --length 12 --width 10 --height 9 --box-temp -10 --ambient 95 --thickness 5 --product "Chicken (fresh)" --lb-per-day 300 --entering-temp 40 --motor-hp 1
+
+Chicken crosses its 27 F freezing point, so the product load includes sensible heat above freezing, the 106 BTU/lb latent heat, and sensible heat below freezing to -10 F; the total is divided by 18 h run time by default below 32 F.

@@ -1,0 +1,271 @@
+{
+ "method": "Heatcraft Engineering Manual H-ENGM0408 walk-in load method (transmission + infiltration + product + internal loads, +10% safety factor)",
+ "insulation_k_values_btu_in_per_hr_ft2_f": {
+  "Foamed-in-place polyurethane": 0.16,
+  "Sprayed polyurethane": 0.12,
+  "Polystyrene (Styrofoam)": 0.24,
+  "Cork": 0.38,
+  "Mineral wool": 0.3
+ },
+ "u_factor_formula": "U = k / thickness_in (Heatcraft); R = thickness / k",
+ "recommended_thickness_in": {
+  "box_temp_F": [
+   "-50 to -25",
+   "-25 to 0",
+   "0 to 25",
+   "25 to 40",
+   "40 and above"
+  ],
+  "styrofoam": [
+   8,
+   6,
+   4,
+   4,
+   2
+  ],
+  "urethane": [
+   6,
+   4,
+   4,
+   "3-4",
+   2
+  ]
+ },
+ "sun_effect_added_to_td_F": {
+  "dark": {
+   "E/S/W walls": 8,
+   "flat roof": 20
+  },
+  "medium": {
+   "E/W walls": 6,
+   "roof": 15
+  },
+  "light": {
+   "E/W walls": 4,
+   "roof": 9
+  }
+ },
+ "air_changes_per_24h": [
+  {
+   "volume_ft3": 200,
+   "above_32F": 44.0,
+   "below_32F": 33.5
+  },
+  {
+   "volume_ft3": 250,
+   "above_32F": 38.0,
+   "below_32F": 29.0
+  },
+  {
+   "volume_ft3": 300,
+   "above_32F": 34.5,
+   "below_32F": 26.2
+  },
+  {
+   "volume_ft3": 400,
+   "above_32F": 29.5,
+   "below_32F": 22.5
+  },
+  {
+   "volume_ft3": 500,
+   "above_32F": 26.0,
+   "below_32F": 20.0
+  },
+  {
+   "volume_ft3": 600,
+   "above_32F": 23.0,
+   "below_32F": 18.0
+  },
+  {
+   "volume_ft3": 800,
+   "above_32F": 20.0,
+   "below_32F": 15.3
+  },
+  {
+   "volume_ft3": 1000,
+   "above_32F": 17.5,
+   "below_32F": 13.5
+  },
+  {
+   "volume_ft3": 1500,
+   "above_32F": 14.0,
+   "below_32F": 11.0
+  },
+  {
+   "volume_ft3": 2000,
+   "above_32F": 12.0,
+   "below_32F": 9.3
+  },
+  {
+   "volume_ft3": 3000,
+   "above_32F": 9.5,
+   "below_32F": 7.4
+  },
+  {
+   "volume_ft3": 4000,
+   "above_32F": 8.2,
+   "below_32F": 6.3
+  },
+  {
+   "volume_ft3": 5000,
+   "above_32F": 7.2,
+   "below_32F": 5.6
+  },
+  {
+   "volume_ft3": 6000,
+   "above_32F": 6.5,
+   "below_32F": 5.0
+  },
+  {
+   "volume_ft3": 8000,
+   "above_32F": 5.5,
+   "below_32F": 4.3
+  },
+  {
+   "volume_ft3": 10000,
+   "above_32F": 4.9,
+   "below_32F": 3.8
+  },
+  {
+   "volume_ft3": 15000,
+   "above_32F": 3.9,
+   "below_32F": 3.0
+  },
+  {
+   "volume_ft3": 20000,
+   "above_32F": 3.5,
+   "below_32F": 2.6
+  },
+  {
+   "volume_ft3": 25000,
+   "above_32F": 3.0,
+   "below_32F": 2.3
+  },
+  {
+   "volume_ft3": 30000,
+   "above_32F": 2.7,
+   "below_32F": 2.1
+  },
+  {
+   "volume_ft3": 40000,
+   "above_32F": 2.3,
+   "below_32F": 1.8
+  },
+  {
+   "volume_ft3": 50000,
+   "above_32F": 2.0,
+   "below_32F": 1.6
+  },
+  {
+   "volume_ft3": 75000,
+   "above_32F": 1.6,
+   "below_32F": 1.3
+  },
+  {
+   "volume_ft3": 100000,
+   "above_32F": 1.4,
+   "below_32F": 1.1
+  },
+  {
+   "volume_ft3": 150000,
+   "above_32F": 1.2,
+   "below_32F": 1.0
+  },
+  {
+   "volume_ft3": 200000,
+   "above_32F": 1.1,
+   "below_32F": 0.9
+  },
+  {
+   "volume_ft3": 300000,
+   "above_32F": 1.0,
+   "below_32F": 0.85
+  }
+ ],
+ "air_change_notes": "Heavy use x2.0; long-term storage x0.6 (Heatcraft Tables 4/5 notes).",
+ "products": {
+  "Apples": {
+   "freezing_point_F": 29.3,
+   "cp_above": 0.87,
+   "cp_below": 0.45,
+   "latent_btu_per_lb": 121
+  },
+  "Beef (fresh)": {
+   "freezing_point_F": 28.5,
+   "cp_above": 0.77,
+   "cp_below": 0.41,
+   "latent_btu_per_lb": 100
+  },
+  "Pork (fresh)": {
+   "freezing_point_F": 28.5,
+   "cp_above": 0.51,
+   "cp_below": 0.32,
+   "latent_btu_per_lb": 55
+  },
+  "Lamb (fresh)": {
+   "freezing_point_F": 28.5,
+   "cp_above": 0.72,
+   "cp_below": 0.45,
+   "latent_btu_per_lb": 93
+  },
+  "Chicken (fresh)": {
+   "freezing_point_F": 27.0,
+   "cp_above": 0.79,
+   "cp_below": 0.42,
+   "latent_btu_per_lb": 106
+  },
+  "Fish (fresh)": {
+   "freezing_point_F": 28.0,
+   "cp_above": 0.78,
+   "cp_below": 0.42,
+   "latent_btu_per_lb": 101
+  },
+  "Milk": {
+   "freezing_point_F": 31.0,
+   "cp_above": 0.93,
+   "cp_below": 0.49,
+   "latent_btu_per_lb": 124
+  },
+  "Eggs (in shell)": {
+   "freezing_point_F": 28.0,
+   "cp_above": 0.73,
+   "cp_below": 0.4,
+   "latent_btu_per_lb": 96
+  },
+  "Ice cream": {
+   "freezing_point_F": 21.0,
+   "cp_above": 0.68,
+   "cp_below": 0.38,
+   "latent_btu_per_lb": 86
+  },
+  "Mixed vegetables": {
+   "freezing_point_F": 30.0,
+   "cp_above": 0.9,
+   "cp_below": 0.45,
+   "latent_btu_per_lb": 130
+  },
+  "Generic (Heatcraft quick default)": {
+   "freezing_point_F": 27.0,
+   "cp_above": 0.8,
+   "cp_below": 0.45,
+   "latent_btu_per_lb": 100
+  }
+ },
+ "product_note": "Heatcraft Table 7 (from 1974 ASHRAE Applications); ranges are stored as published in the JSON 'products_as_published' field of the research notes - the calculator uses range midpoints. Respiration heat is NOT included (no verified table was available).",
+ "internal_loads": {
+  "motors_quick_formula": "HP x 75,000 BTU/24h (all fan motors in box)",
+  "lights": "W x 3.41 x hours on per day (Heatcraft sheet uses W x 82 for 24 h)",
+  "people_btu_per_person_24h_by_box_temp_F": {
+   "50": 17280,
+   "40": 20160,
+   "30": 22800,
+   "20": 25200,
+   "10": 28800,
+   "0": 31200,
+   "-10": 33600
+  },
+  "glass_doors": "31,200 BTU per door per 24h"
+ },
+ "safety_factor": "10% added to the total (Heatcraft estimating sheet)",
+ "run_time": "Required BTUH = total BTU/24h (incl. safety) / compressor run hours. Freezer sheet divides by 18 h; 16 h for coolers is the standard industry convention."
+}
